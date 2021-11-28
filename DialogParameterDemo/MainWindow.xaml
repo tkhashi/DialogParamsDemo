@@ -6,7 +6,36 @@
         xmlns:local="clr-namespace:DialogParameterDemo"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <TextBlock Text="hoge"/>
-    </Grid>
+        <Window.DataContext>
+            <local:MainWindowViewModel/>
+        </Window.DataContext>
+        <Grid>
+            <DataGrid 
+                ItemsSource="{Binding Products}"
+                AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                        <DataGridTextColumn
+                            Header="ID"
+                            Binding="{Binding Id}"
+                            Width="200">
+                        </DataGridTextColumn>
+                        <DataGridTextColumn
+                            Header ="名称"
+                            Binding="{Binding Name}"
+                            Width="200">
+                        </DataGridTextColumn>
+                        <DataGridTemplateColumn 
+                            Header="ボタン"
+                            Width="200">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <Button Content="ダイアログを開く"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
 </Window>
