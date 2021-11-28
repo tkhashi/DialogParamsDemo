@@ -29,7 +29,10 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel>
-                                        <Button Content="ダイアログを開く"/>
+                                        <Button 
+                                            Content="ダイアログを開く"
+                                            Command="{Binding RelativeSource={RelativeSource AncestorType=local:MainWindow},
+                                            Path =DataContext.CreateProductCommand}"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>

@@ -1,6 +1,10 @@
 ﻿using DialogParameterDemo.Data;
 using Prism.Services.Dialogs;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Windows;
+using System.Windows.Input;
+using Prism.Commands;
 
 namespace DialogParameterDemo
 {
@@ -9,10 +13,17 @@ namespace DialogParameterDemo
         public IList<Product> Products { get; }
         private IDialogService _dialogService;
 
+        public DelegateCommand CreateProductCommand { get; }
+
         public MainWindowViewModel(IDialogService dialogService)
         {
             _dialogService = dialogService;
-            _dialogService.ShowDialog(nameof(CreateProductDialogView));
+
+            CreateProductCommand = new DelegateCommand(
+                //executeMethod 実行される内容
+                () => { _dialogService.ShowDialog(nameof(CreateProductDialogView)); },
+                //canExecuteMethod 実行できるか
+                () => true);
 
             Products = new List<Product>();
             Products.Add(new Product("1", "梅干し", 300));
